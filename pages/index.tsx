@@ -38,13 +38,14 @@ const Home: NextPage = () => {
               </p>
               <p className="pb-5 text-base text-gray-700">
                 The scenario: The team is growing, with multiple personas
-                creating your brand's visual content. Your Brand Book is a great
+                creating your brand&apos;s visual content. Your Brand Book is a great
                 source of visual
               </p>
               <div className="flex flex-row pb-1 lg:pt-20 items-center">
                 <Image
                   className="rounded-full"
                   src="/avatar.jpg"
+                  alt=""
                   height={50}
                   width={50}
                 />

@@ -4,7 +4,15 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",  
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      'alegreya': ['Alegreya', 'system-ui'],
+      
+    },
+    extend: {
+      spacing: {
+        '20rem': '20rem',
+      }
+    },
   },
   plugins: [],
 }
