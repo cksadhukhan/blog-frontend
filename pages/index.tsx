@@ -16,9 +16,9 @@ const Home: NextPage = () => {
         <meta name="description" content="Blog app description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="p-2 lg:px-12">
+      <main className="">
         <Navbar />
-        <div className="px-4 lg:px-12 py-8">
+        <div className="px-4 lg:px-28 py-8">
           <div className="px-2 min-w-screen flex flex-col lg:flex-row">
             <Image
               className="rounded"
@@ -61,7 +61,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="px-4 lg:px-12 py-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10">
+        <div className="px-4 lg:px-28 py-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10">
           <Blog
             title="Keep your brand consistent with an Illustration Style guide"
             description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
@@ -77,7 +77,7 @@ const Home: NextPage = () => {
             author={new Author("Chanchal Sadhukhan", "App Developer")}
           />
         </div>
-        <div className="px-4 lg:px-12 py-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+        <div className="px-4 lg:px-28 py-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
           <Blog
             title="Keep your brand consistent with an Illustration Style guide"
             description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
@@ -143,7 +143,7 @@ const Home: NextPage = () => {
           />
         </div>
       </main>
-      <Pagination totalPage={0} currentPage={0} />
+      <Pagination totalPage={9} currentPage={9} />
       <Footer />
     </div>
   );

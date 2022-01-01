@@ -6,7 +6,7 @@ const Navbar: React.FC<NavbarComponentProps> = (
   props: NavbarComponentProps
 ) => {
   return (
-    <nav className="flex items-center flex-wrap py-4 pb-5 px-5 lg:px-12">
+    <nav className="flex items-center flex-wrap py-4 pb-5 px-5 lg:px-28">
       <Link href="/">
         <a className="inline-flex items-center p-2 mr-4 ">
           <p className="text-xl  font-bold uppercase tracking-wide">Blog App</p>
