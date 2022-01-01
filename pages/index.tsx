@@ -4,6 +4,8 @@ import Image from "next/image";
 import React from "react";
 import Blog from "../components/blog/blog.component";
 import Navbar from "../components/navbar/navbar.component";
+import Footer from "../components/footer/footer.component";
+import Pagination from "../components/pagination/pagination.component";
 import { Author } from "../models";
 
 const Home: NextPage = () => {
@@ -38,8 +40,8 @@ const Home: NextPage = () => {
               </p>
               <p className="pb-5 text-base text-gray-700">
                 The scenario: The team is growing, with multiple personas
-                creating your brand&apos;s visual content. Your Brand Book is a great
-                source of visual
+                creating your brand&apos;s visual content. Your Brand Book is a
+                great source of visual
               </p>
               <div className="flex flex-row pb-1 lg:pt-20 items-center">
                 <Image
@@ -141,6 +143,8 @@ const Home: NextPage = () => {
           />
         </div>
       </main>
+      <Pagination totalPage={0} currentPage={0} />
+      <Footer />
     </div>
   );
 };
