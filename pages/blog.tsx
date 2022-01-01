@@ -2,14 +2,12 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { BsFacebook, BsTwitter, BsLinkedin } from "react-icons/bs";
-import Navbar from "../components/navbar/navbar.component";
-import Blog from "../components/blog/blog.component";
+import { Blog, Layout } from "../components";
 import { Author } from "../models";
 
 const BlogPage: NextPage = () => {
   return (
-    <>
-      <Navbar />
+    <Layout>
       <div className="px-4 lg:px-[20rem] pt-2 lg:pt-10">
         <div className="py-1 lg:px-10 flex flex-row items-center">
           <p className="text-md text-gray-600">Development</p>
@@ -154,7 +152,7 @@ const BlogPage: NextPage = () => {
           />
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

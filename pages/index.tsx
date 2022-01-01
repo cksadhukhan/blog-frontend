@@ -2,10 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
-import Blog from "../components/blog/blog.component";
-import Navbar from "../components/navbar/navbar.component";
-import Footer from "../components/footer/footer.component";
-import Pagination from "../components/pagination/pagination.component";
+import { Blog, Layout, Pagination } from "../components";
 import { Author } from "../models";
 
 const Home: NextPage = () => {
@@ -16,16 +13,13 @@ const Home: NextPage = () => {
         <meta name="description" content="Blog app description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="">
-        <Navbar />
+      <Layout>
         <div className="px-4 lg:px-28 py-8">
           <div className="px-2 min-w-screen flex flex-col lg:flex-row">
             <Image
               className="rounded"
               height={800}
               width={1800}
-              // layout="fill"
-              // layout=""
               src="/banner-hero.png"
               alt="banner"
             />
@@ -142,9 +136,8 @@ const Home: NextPage = () => {
             author={new Author("Chanchal Sadhukhan", "App Developer")}
           />
         </div>
-      </main>
-      <Pagination totalPage={9} currentPage={9} />
-      <Footer />
+        <Pagination totalPage={9} currentPage={9} />
+      </Layout>
     </div>
   );
 };

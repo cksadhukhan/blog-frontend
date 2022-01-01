@@ -1,7 +1,7 @@
-import React from "react";
+import { NextPage } from "next";
 import { PaginationComponentProps } from "./pagination.component.props";
 
-const Pagination: React.FC<PaginationComponentProps> = (
+export const Pagination: NextPage<PaginationComponentProps> = (
   props: PaginationComponentProps
 ) => {
   const { currentPage, totalPage } = props;
@@ -29,5 +29,3 @@ const Pagination: React.FC<PaginationComponentProps> = (
     </div>
   );
 };
-
-export default Pagination;

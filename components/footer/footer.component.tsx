@@ -1,8 +1,8 @@
-import React from "react";
 import Link from "next/link";
 import { BsFacebook, BsTwitter, BsLinkedin } from "react-icons/bs";
+import { NextPage } from "next";
 
-const Footer = () => {
+export const Footer: NextPage = () => {
   return (
     <div className="mt-2 lg:mt-5">
       <div className="flex flex-row justify-between bg-zinc-900 px-10 lg:px-28 py-2 lg:py-5 items-center">
@@ -52,5 +52,3 @@ const Footer = () => {
     </div>
   );
 };
-
-export default Footer;

@@ -1,8 +1,9 @@
+import { NextPage } from "next";
 import Link from "next/link";
 import React, { useState } from "react";
 import { NavbarComponentProps } from "./navbar.component.props";
 
-const Navbar: React.FC<NavbarComponentProps> = (
+export const Navbar: NextPage<NavbarComponentProps> = (
   props: NavbarComponentProps
 ) => {
   const [active, setActive] = useState(false);
@@ -68,5 +69,3 @@ const Navbar: React.FC<NavbarComponentProps> = (
     </nav>
   );
 };
-
-export default Navbar;

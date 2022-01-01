@@ -1,7 +1,10 @@
+import { NextPage } from "next";
 import Image from "next/image";
 import { BlogComponentProps } from "./blog.component.props";
 
-const Blog: React.FC<BlogComponentProps> = (props: BlogComponentProps) => {
+export const Blog: NextPage<BlogComponentProps> = (
+  props: BlogComponentProps
+) => {
   return (
     <div className="rounded overflow-hidden shadow-lg m-2">
       <Image
@@ -45,5 +48,3 @@ const Blog: React.FC<BlogComponentProps> = (props: BlogComponentProps) => {
     </div>
   );
 };
-
-export default Blog;
