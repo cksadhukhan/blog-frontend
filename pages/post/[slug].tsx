@@ -1,9 +1,10 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import { BsFacebook, BsTwitter, BsLinkedin } from "react-icons/bs";
-import { Blog, Layout } from "../components";
-import { Author } from "../models";
+import { Blog, Layout } from "../../components";
+import { Author } from "../../models";
 
 const BlogPage: NextPage = () => {
   return (
@@ -15,15 +16,15 @@ const BlogPage: NextPage = () => {
           <p className="text-md text-gray-600">November 2, 2021</p>
         </div>
 
-        <h1 className="lg:px-10 py-4 text-5xl font-bold">
-          Pixel Kit: thinking inside the box for a change
-        </h1>
+        <h1 className="lg:px-10 py-4 text-5xl font-bold">{"title"}</h1>
         <div className="py-5 text-center">
           <Image
             height={400}
             width={800}
             layout="responsive"
-            src="/blogimg.png"
+            src={
+              "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+            }
             alt=""
           />
         </div>
@@ -129,7 +130,7 @@ const BlogPage: NextPage = () => {
           </h2>
         </div>
         <div className="px-4 lg:px-40 py-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-          <Blog
+          {/* <Blog
             title="Keep your brand consistent with an Illustration Style guide"
             description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
             date="November 2, 2021"
@@ -149,7 +150,7 @@ const BlogPage: NextPage = () => {
             date="November 2, 2021"
             tag="Development"
             author={new Author("Chanchal Sadhukhan", "App Developer")}
-          />
+          /> */}
         </div>
       </div>
     </Layout>

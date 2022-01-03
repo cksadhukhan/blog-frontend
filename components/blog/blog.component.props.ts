@@ -6,4 +6,5 @@ export interface BlogComponentProps {
   tag: string;
   date: string;
   author: Author;
+  image: string;
 }
