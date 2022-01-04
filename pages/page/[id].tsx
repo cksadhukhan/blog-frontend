@@ -21,6 +21,7 @@ const Page: NextPage = () => {
             description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
             date="November 2, 2021"
             tag="Development"
+            slug=""
             author={
               new Author({
                 name: "John Doe",
@@ -36,6 +37,7 @@ const Page: NextPage = () => {
             description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
             date="November 2, 2021"
             tag="Development"
+            slug=""
             author={
               new Author({
                 name: "John Doe",
@@ -51,6 +53,7 @@ const Page: NextPage = () => {
             description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
             date="November 2, 2021"
             tag="Development"
+            slug=""
             author={
               new Author({
                 name: "John Doe",
@@ -66,6 +69,7 @@ const Page: NextPage = () => {
             description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
             date="November 2, 2021"
             tag="Development"
+            slug=""
             author={
               new Author({
                 name: "John Doe",
@@ -81,6 +85,7 @@ const Page: NextPage = () => {
             description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
             date="November 2, 2021"
             tag="Development"
+            slug=""
             author={
               new Author({
                 name: "John Doe",
@@ -96,6 +101,7 @@ const Page: NextPage = () => {
             description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
             date="November 2, 2021"
             tag="Development"
+            slug=""
             author={
               new Author({
                 name: "John Doe",

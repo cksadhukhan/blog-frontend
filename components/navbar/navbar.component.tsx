@@ -64,6 +64,11 @@ export const Navbar: NextPage<NavbarComponentProps> = (
               Contact us
             </a>
           </Link>
+          <Link href="/">
+            <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center hover:underline hover:underline-offset-8">
+              Contact us
+            </a>
+          </Link>
         </div>
       </div>
     </nav>

@@ -13,8 +13,44 @@ const NotFound: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div className="px-4 lg:px-28 py-8">
-          <h1>Not Found</h1>
+        <div className="flex flex-col py-10 items-center justify-center ">
+          <div className=" flex flex-col lg:flex-row">
+            <Image
+              className="rounded mx-5"
+              height={400}
+              width={600}
+              src="/404.png"
+              alt="banner"
+            />
+            <div className="px-3 my-6">
+              <div className="py-1 flex flex-col items-center lg:items-start">
+                <button className="text-sm bg-gray-400 font-medium text-white py-2 px-2 border hover:border-gray-800 hover:border-transparent rounded-full">
+                  Page not found
+                </button>
+
+                <h1 className="text-5xl font-extrabold py-4">
+                  Oh No&#33; Error 404
+                </h1>
+
+                <p className="text-lg whitespace-nowrap text-right ">
+                  Maybe Bigfoot has broken this page.
+                </p>
+                <p className="text-lg whitespace-nowrap text-right pb-4">
+                  Comeback to the homepage
+                </p>
+
+                <div className="flex flex-row items-center justify-center">
+                  <button className="text-md py-2 px-3 mr-3 bg-blue-500 hover:bg-blue-700 text-white font-bold border border-blue-700 rounded-full ">
+                    Back to Homepage
+                  </button>
+
+                  <button className="text-md py-2 px-3 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white border border-blue-500 hover:border-transparent rounded-full">
+                    Visit our help center
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </Layout>
     </div>
