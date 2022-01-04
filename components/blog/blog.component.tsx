@@ -1,11 +1,12 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import { BlogComponentProps } from "./blog.component.props";
+import Link from "next/link";
 
 export const Blog: NextPage<BlogComponentProps> = (
   props: BlogComponentProps
 ) => {
-  const { title, description, tag, date, author, image } = props;
+  const { title, description, tag, date, author, image, slug } = props;
   return (
     <div className="rounded overflow-hidden shadow-lg m-2">
       <Image
@@ -22,9 +23,11 @@ export const Blog: NextPage<BlogComponentProps> = (
           <p className="px-2 text-lg text-gray-600">•</p>
           <p className="text-sm text-gray-600">{date}</p>
         </div>
-        <p className="py-2 text-xl font-medium hover:text-orange-500 hover:cursor-pointer">
-          {title}
-        </p>
+        <Link href={`/post/${slug}`}>
+          <a className="py-2 text-xl font-medium hover:text-orange-500 hover:cursor-pointer">
+            {title}
+          </a>
+        </Link>
         <p className="pb-5 text-base text-gray-700">{description}</p>
         <div className="flex flex-row pb-5 items-center">
           <Image

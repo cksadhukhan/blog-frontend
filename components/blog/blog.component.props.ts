@@ -7,4 +7,5 @@ export interface BlogComponentProps {
   date: string;
   author: Author;
   image: string;
+  slug: string;
 }

@@ -48,7 +48,6 @@ export async function getAllPostsForHome(preview: any) {
     .fetch(`*[_type == "post"] | order(publishedAt desc){
       ${postFields}
     }`);
-  console.log(JSON.stringify(results));
   return getUniquePosts(results);
 }
 

@@ -2,6 +2,7 @@ import moment from "moment";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { Blog, Layout, Pagination } from "../components";
 import { getAllPostsForHome } from "../lib/api";
@@ -40,9 +41,11 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
                   {moment(heroPost.date).format("LL")}
                 </p>
               </div>
-              <p className="py-2 text-xl font-medium hover:text-orange-500 hover:cursor-pointer">
-                {heroPost.title}
-              </p>
+              <Link href={`/post/${heroPost.slug}`}>
+                <a className="py-2 text-xl font-medium hover:text-orange-500 hover:cursor-pointer">
+                  {heroPost.title}
+                </a>
+              </Link>
               <p className="pb-5 text-base text-gray-700">
                 {heroPost.description.substring(0, 150)}
               </p>
@@ -71,6 +74,7 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
             <Blog
               key={post.slug}
               title={post.title}
+              slug={post.slug}
               image={imageBuilder(post.coverImage).url() ?? ""}
               description={post.description.substring(0, 150)}
               date={moment(post.date).format("LL")}
@@ -91,6 +95,7 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
             <Blog
               key={post.slug}
               title={post.title}
+              slug={post.slug}
               image={imageBuilder(post.coverImage).url() ?? ""}
               description={post.description.substring(0, 150)}
               date={moment(post.date).format("LL")}
