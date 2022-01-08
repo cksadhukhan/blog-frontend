@@ -3,12 +3,14 @@ export class Author {
   private position: string;
   private bio: string;
   private avatar: string;
+  private slug: string;
 
   constructor(data: any) {
     this.name = data.name || "";
     this.position = data.position || "Full Stack Developer";
     this.bio = data.bio || "";
     this.avatar = data.avatar || "";
+    this.slug = data.slug || "";
   }
 
   getName(): string {
@@ -25,5 +27,9 @@ export class Author {
 
   getAvatar(): string {
     return this.avatar;
+  }
+
+  getSlug(): string {
+    return this.slug;
   }
 }
