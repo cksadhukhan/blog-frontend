@@ -48,14 +48,15 @@ const Page: NextPage = ({ posts, pages, page }: any) => {
 export async function getStaticPaths() {
   const count = await getPostCount();
   const pages = Math.ceil(count / 6);
+  const nextPages = Array.from(Array(pages), (_, index) => index + 1);
 
   return {
     paths:
-      [
-        { params: { id: "1" } },
-        { params: { id: "2" } },
-        { params: { id: "3" } },
-      ] || [],
+      nextPages?.map((page: any) => ({
+        params: {
+          id: page.toString(),
+        },
+      })) || [],
     fallback: false,
   };
 }
