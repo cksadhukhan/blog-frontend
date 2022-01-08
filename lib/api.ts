@@ -14,15 +14,13 @@ const getUniquePosts = (posts: any) => {
 
 const postFields = `
   _id,
-  name,
   title,
-  body,
   'date': publishedAt,
   description,
   'slug': slug.current,
   'coverImage': mainImage,
   "tag": categories[]->title,
-  'author': author->{name, 'picture': image.asset->url, position},
+  'author': author->{name, 'picture': image.asset->url, position, 'slug': slug.current},
 `;
 
 const getClient = (preview: any) => (preview ? previewClient : client);
@@ -43,11 +41,57 @@ export async function getAllPostsWithSlug() {
   return data;
 }
 
+export async function getAllAuthorsWithSlug() {
+  const data = await client.fetch(
+    `*[_type == "author"]{ 'slug': slug.current }`
+  );
+  return data;
+}
+
+export async function getAuthorAndPosts(slug: string, preview: boolean) {
+  const curClient = getClient(preview);
+  const [author, posts] = await Promise.all([
+    curClient
+      .fetch(
+        `*[_type == "author" && slug.current == $slug]{
+        _id,
+        name,
+        position,
+        bio,
+        'picture': image.asset->url, 
+        'posts': *[_type == 'post' && author._ref == ^._id ]
+      }`,
+        { slug }
+      )
+      .then((res) => res?.[0]),
+    curClient.fetch(
+      `*[_type == 'post' && slug.current != $slug]{
+        ${postFields}
+      }[0...3]`,
+      { slug }
+    ),
+  ]);
+  return { author, posts: getUniquePosts(posts) };
+}
+
+export async function getPostCount() {
+  const data = await client.fetch(`count(*[_type == "post"])`);
+  return data;
+}
+
 export async function getAllPostsForHome(preview: any) {
   const results = await getClient(preview)
     .fetch(`*[_type == "post"] | order(publishedAt desc){
       ${postFields}
-    }`);
+    }[0...6]`);
+  return getUniquePosts(results);
+}
+
+export async function getAllPostsForNextPage(offset: number, preview: any) {
+  const results = await getClient(preview)
+    .fetch(`*[_type == "post"] | order(publishedAt desc){
+      ${postFields}
+    }[${(offset - 1) * 6}...${(offset - 1) * 6 + 6}]`);
   return getUniquePosts(results);
 }
 
@@ -66,8 +110,7 @@ export async function getPostAndMorePosts(slug: any, preview: any) {
     curClient.fetch(
       `*[_type == "post" && slug.current != $slug] | order(publishedAt desc, _updatedAt desc){
         ${postFields}
-        body,
-      }[0...2]`,
+      }[0...3]`,
       { slug }
     ),
   ]);
