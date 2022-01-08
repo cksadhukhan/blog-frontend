@@ -10,6 +10,7 @@ import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
 import { imageBuilder } from "../../lib/sanity";
 import moment from "moment";
 import BlockContent from "@sanity/block-content-to-react";
+import { Author } from "../../models";
 
 const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
   const router = useRouter();
@@ -97,7 +98,7 @@ const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
             to see it being used out there.
           </p> */}
             <p className="py-4 lg:py-16 text-xl font-bold italic text-gray-700">
-              Follow Pixelmatters on{" "}
+              Follow Blog on{" "}
               <Link href="/" passHref>
                 <a className="text-orange-600 underline hover:opacity-50">
                   Twitter
@@ -133,9 +134,11 @@ const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
                   width={50}
                 />
                 <div className="px-4 flex flex-col">
-                  <p className="text-md font-bold text-gray-700">
-                    {post.author.name}
-                  </p>
+                  <Link href={`/profile/${post.author.slug}`}>
+                    <a className="text-md font-bold text-gray-700 hover:text-orange-500">
+                      {post.author.name}
+                    </a>
+                  </Link>
                   <p className="text-md text-gray-600">
                     {post.author.position}
                   </p>
@@ -178,7 +181,28 @@ const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
               Related blog posts
             </h2>
           </div>
-          <div className="px-4 lg:px-40 py-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5"></div>
+          <div className="px-4 lg:px-40 py-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+            {morePosts &&
+              morePosts.map((post) => (
+                <Blog
+                  key={post.slug}
+                  title={post.title}
+                  slug={post.slug}
+                  image={imageBuilder(post.coverImage).url() ?? ""}
+                  description={post.description.substring(0, 150)}
+                  date={moment(post.date).format("LL")}
+                  tag={post.tag[0] ?? "Development"}
+                  author={
+                    new Author({
+                      name: post.author.name,
+                      position: post.author.position,
+                      bio: "",
+                      avatar: post.author.picture,
+                    })
+                  }
+                />
+              ))}
+          </div>
         </div>
       </Layout>
     </>
@@ -207,7 +231,7 @@ export async function getStaticPaths() {
           slug: post.slug,
         },
       })) || [],
-    fallback: true,
+    fallback: false,
   };
 }
 
