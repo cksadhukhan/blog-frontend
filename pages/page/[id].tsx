@@ -1,11 +1,14 @@
+import moment from "moment";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import { Blog, Layout, Pagination } from "../../components";
+import { getAllPostsForNextPage, getPostCount } from "../../lib/api";
+import { imageBuilder } from "../../lib/sanity";
 import { Author } from "../../models";
 
-const Page: NextPage = () => {
+const Page: NextPage = ({ posts, pages, page }: any) => {
   return (
     <div>
       <Head>
@@ -15,107 +18,61 @@ const Page: NextPage = () => {
       </Head>
       <Layout>
         <div className="px-4 lg:px-28 py-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-          <Blog
-            image="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-            title="Keep your brand consistent with an Illustration Style guide"
-            description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
-            date="November 2, 2021"
-            tag="Development"
-            slug=""
-            author={
-              new Author({
-                name: "John Doe",
-                position: "App Developer",
-                avatar:
-                  "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-              })
-            }
-          />
-          <Blog
-            image="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-            title="Keep your brand consistent with an Illustration Style guide"
-            description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
-            date="November 2, 2021"
-            tag="Development"
-            slug=""
-            author={
-              new Author({
-                name: "John Doe",
-                position: "App Developer",
-                avatar:
-                  "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-              })
-            }
-          />
-          <Blog
-            image="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-            title="Keep your brand consistent with an Illustration Style guide"
-            description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
-            date="November 2, 2021"
-            tag="Development"
-            slug=""
-            author={
-              new Author({
-                name: "John Doe",
-                position: "App Developer",
-                avatar:
-                  "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-              })
-            }
-          />
-          <Blog
-            image="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-            title="Keep your brand consistent with an Illustration Style guide"
-            description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
-            date="November 2, 2021"
-            tag="Development"
-            slug=""
-            author={
-              new Author({
-                name: "John Doe",
-                position: "App Developer",
-                avatar:
-                  "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-              })
-            }
-          />
-          <Blog
-            image="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-            title="Keep your brand consistent with an Illustration Style guide"
-            description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
-            date="November 2, 2021"
-            tag="Development"
-            slug=""
-            author={
-              new Author({
-                name: "John Doe",
-                position: "App Developer",
-                avatar:
-                  "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-              })
-            }
-          />
-          <Blog
-            image="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-            title="Keep your brand consistent with an Illustration Style guide"
-            description="The scenario: The team is growing, with multiple personas creating your brand's visual content. Your Brand Book is a great source of visual"
-            date="November 2, 2021"
-            tag="Development"
-            slug=""
-            author={
-              new Author({
-                name: "John Doe",
-                position: "App Developer",
-                avatar:
-                  "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-              })
-            }
-          />
+          {posts &&
+            posts.map((post) => (
+              <Blog
+                key={post.slug}
+                title={post.title}
+                slug={post.slug}
+                image={imageBuilder(post.coverImage).url() ?? ""}
+                description={post.description.substring(0, 150)}
+                date={moment(post.date).format("LL")}
+                tag={post.tag[0] ?? "Development"}
+                author={
+                  new Author({
+                    name: post.author.name,
+                    position: post.author.position,
+                    bio: "",
+                    avatar: post.author.picture,
+                  })
+                }
+              />
+            ))}
         </div>
-        <Pagination totalPage={9} currentPage={9} />
+        <Pagination totalPage={pages} currentPage={page} />
       </Layout>
     </div>
   );
 };
+
+export async function getStaticPaths() {
+  const count = await getPostCount();
+  const pages = Math.ceil(count / 6);
+
+  return {
+    paths:
+      [
+        { params: { id: "1" } },
+        { params: { id: "2" } },
+        { params: { id: "3" } },
+      ] || [],
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context) {
+  const { id } = context.params;
+  const count = await getPostCount();
+  const pages = Math.ceil(count / 6);
+  const nextPosts = await getAllPostsForNextPage(id, false);
+
+  return {
+    props: {
+      posts: nextPosts,
+      page: id,
+      pages,
+    },
+  };
+}
 
 export default Page;
