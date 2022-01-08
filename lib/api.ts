@@ -79,6 +79,12 @@ export async function getPostCount() {
   return data;
 }
 
+export async function getPostPages() {
+  const data = await client.fetch(`count(*[_type == "post"])`);
+  const n = Math.ceil(data / 6);
+  return Array.from(Array(n), (_, index) => index + 1);
+}
+
 export async function getAllPostsForHome(preview: any) {
   const results = await getClient(preview)
     .fetch(`*[_type == "post"] | order(publishedAt desc){

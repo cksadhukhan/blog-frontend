@@ -15,8 +15,6 @@ import { Author } from "../../models";
 const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
   const router = useRouter();
 
-  console.log("Post: " + JSON.stringify(post));
-
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
@@ -65,38 +63,6 @@ const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
                 dataset={process.env.NEXT_PUBLIC_SANITY_DATASET || "production"}
               />
             </div>
-            {/* <h2 className="py-6 text-3xl font-medium">
-            What&apos;s the Pixel Kit?
-          </h2>
-          <p className="pb-6 text-xl text-gray-800 font-['alegreya'] leading-8 tracking-wide">
-            In a few words, it&apos;s a celebration of our Pixelmatters&apos;
-            pride. We wanted to celebrate our passionate team with something
-            they could proudly carry everywhere. That meant making it cool, but
-            mostly, making it inclusive. Embodying a dynamic working culture
-            into a 40x30cm box was a challenge that the Marketing team gladly
-            took on. Now that the Kit is in the teams&apos; hands, we
-            couldn&apos;t be happier.
-          </p>
-        </div>
-        <div className="pb-10 text-center">
-          <Image
-            height={300}
-            width={700}
-            layout="responsive"
-            src="/blogimg1.png"
-            alt=""
-          />
-        </div>
-        <div className="px-3 lg:px-10">
-          <h2 className="py-4 lg:py-10 text-3xl font-medium">
-            A team effort in a Box
-          </h2>
-          <p className="lg:pb-10 text-xl text-gray-800 font-['alegreya'] leading-8 tracking-wide">
-            This Pixel Kit represents months of collaboration. From the
-            Marketing to the People Operations team, everyone did their best to
-            embody the Pixel culture in a small package, and we can&apos;t wait
-            to see it being used out there.
-          </p> */}
             <p className="py-4 lg:py-16 text-xl font-bold italic text-gray-700">
               Follow Blog on{" "}
               <Link href="/" passHref>
@@ -210,7 +176,6 @@ const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
 };
 
 export async function getStaticProps({ params, preview = false }: any) {
-  console.log("Params: " + params);
   const data = await getPostAndMorePosts(params.slug, preview);
   return {
     props: {
