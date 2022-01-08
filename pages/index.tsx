@@ -3,16 +3,19 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { Blog, Layout, Pagination } from "../components";
-import { getAllPostsForHome } from "../lib/api";
+import { getAllPostsForHome, getPostCount } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
 import { Author } from "../models";
 
-const Home: NextPage = ({ allPosts, preview }: any) => {
+const Home: NextPage = ({ allPosts, count, preview }: any) => {
   const heroPost = allPosts[0];
   const nextPosts = allPosts.slice(2, 4);
   const morePosts = allPosts.slice(3);
+
+  const getTotalPageCount = () => {
+    return Math.ceil(count / 6);
+  };
 
   return (
     <div>
@@ -111,7 +114,7 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
             />
           ))}
         </div>
-        <Pagination totalPage={9} currentPage={9} />
+        <Pagination totalPage={getTotalPageCount()} currentPage={1} />
       </Layout>
     </div>
   );
@@ -119,9 +122,10 @@ const Home: NextPage = ({ allPosts, preview }: any) => {
 
 export async function getStaticProps({ preview = false }) {
   const allPosts = await getAllPostsForHome(preview);
+  const count = await getPostCount();
 
   return {
-    props: { allPosts, preview },
+    props: { allPosts, count, preview },
     revalidate: 1,
   };
 }
