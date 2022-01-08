@@ -118,6 +118,7 @@ const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
                   href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURI(
                     getLink()
                   )}`}
+                  rel="noreferrer"
                 >
                   <BsFacebook className="px-3 text-5xl hover:cursor-pointer hover:scale-125 hover:shadow-lg" />
                 </a>
@@ -126,6 +127,7 @@ const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
                   href={`http://twitter.com/share?text=${
                     post.title
                   }&url=${encodeURI(getLink())}&hashtags=${post.tag}`}
+                  rel="noreferrer"
                 >
                   <BsTwitter className="px-3 text-5xl hover:cursor-pointer hover:scale-125 hover:shadow-lg" />
                 </a>
@@ -134,6 +136,7 @@ const BlogPage: NextPage = ({ post, morePosts, preview }: any) => {
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURI(
                     getLink()
                   )}`}
+                  rel="noreferrer"
                 >
                   <BsLinkedin className="px-3 text-5xl hover:cursor-pointer hover:scale-125 hover:shadow-lg" />
                 </a>

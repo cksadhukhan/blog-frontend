@@ -5,7 +5,11 @@ import NextNProgress from "nextjs-progressbar";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <NextNProgress options={{ showSpinner: false }} />
+      <NextNProgress
+        options={{ showSpinner: false }}
+        color="#ea5c3b
+"
+      />
       <Component {...pageProps} />
     </>
   );
