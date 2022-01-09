@@ -28,6 +28,7 @@ const Home: NextPage = ({ allPosts, count, preview }: any) => {
         <div className="px-4 lg:px-28 py-8">
           <div className="px-2 min-w-screen flex flex-col lg:flex-row">
             <Image
+              priority
               className="rounded"
               height={800}
               width={1800}
