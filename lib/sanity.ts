@@ -4,12 +4,7 @@ import {
   createImageUrlBuilder,
   createPreviewSubscriptionHook,
 } from "next-sanity";
-
-const config = {
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "b1rsx8gb",
-  useCdn: process.env.NODE_ENV === "production",
-};
+import { config } from "./config";
 
 export const imageBuilder = (source: any) =>
   createImageUrlBuilder(config).image(source);
