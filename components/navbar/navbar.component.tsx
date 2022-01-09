@@ -49,22 +49,17 @@ export const Navbar: NextPage<NavbarComponentProps> = (
               Home
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/category">
             <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center hover:underline hover:underline-offset-8">
-              Articles
+              Category
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/about">
             <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center hover:underline hover:underline-offset-8">
-              About us
+              About us{" "}
             </a>
           </Link>
-          <Link href="/">
-            <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center hover:underline hover:underline-offset-8">
-              Contact us
-            </a>
-          </Link>
-          <Link href="/">
+          <Link href="/contact">
             <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded items-center justify-center hover:underline hover:underline-offset-8">
               Contact us
             </a>
