@@ -25,7 +25,7 @@ const Home: NextPage = ({ allPosts, count, preview }: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div className="px-4 lg:px-28 py-8">
+        <div className="px-4 lg:px-28 py-8" data-aos="flip-up">
           <div className="px-2 min-w-screen flex flex-col lg:flex-row">
             <Image
               priority

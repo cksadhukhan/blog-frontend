@@ -8,7 +8,7 @@ export const Blog: NextPage<BlogComponentProps> = (
 ) => {
   const { title, description, tag, date, author, image, slug } = props;
   return (
-    <div className="rounded overflow-hidden shadow-lg m-2">
+    <div className="rounded overflow-hidden shadow-lg m-2" data-aos="zoom-in">
       <Image
         className="rounded"
         height={200}
